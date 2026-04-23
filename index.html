@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="シンプルで高速なローカルTodoアプリ。ブラウザに全データを保存。">
+  <title>タスク管理 | シンプルTodo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app" role="main">
+    <header class="app-header">
+      <h1>タスク管理</h1>
+      <p class="subtitle" id="stats" aria-live="polite">タスクはありません</p>
+    </header>
+
+    <form id="task-form" class="task-form" aria-label="新規タスク追加フォーム">
+      <div class="input-row">
+        <input
+          type="text"
+          id="task-input"
+          class="task-input"
+          placeholder="やることを入力してEnter..."
+          autocomplete="off"
+          maxlength="200"
+          required
+          aria-label="タスク名"
+        >
+        <button type="submit" class="btn btn-primary" aria-label="タスクを追加">追加</button>
+      </div>
+      <div class="options-row">
+        <label class="option-item">
+          <span class="option-label">優先度</span>
+          <select id="priority-input" aria-label="優先度">
+            <option value="low">低</option>
+            <option value="medium" selected>中</option>
+            <option value="high">高</option>
+          </select>
+        </label>
+        <label class="option-item">
+          <span class="option-label">期限</span>
+          <input type="date" id="due-input" aria-label="期限日">
+        </label>
+      </div>
+    </form>
+
+    <nav class="filters" aria-label="タスクフィルタ">
+      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">全て</button>
+      <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">未完了</button>
+      <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">完了済み</button>
+      <button type="button" id="clear-completed" class="clear-btn" aria-label="完了済みタスクを全て削除">完了を削除</button>
+    </nav>
+
+    <section aria-label="タスク一覧">
+      <ul id="task-list" class="task-list" role="list"></ul>
+      <p id="empty-state" class="empty-state" hidden>タスクがありません。上のフォームから追加してください。</p>
+    </section>
+
+    <footer class="app-footer">
+      <small>データはこのブラウザ内に保存されます（localStorage）。</small>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+  </html>
